@@ -6,12 +6,12 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
-import { TimingObject } from "timing-object";
-import { TimingProvider } from "timing-provider";
-import { setTimingsrc } from "timingsrc";
+// import { TimingObject } from "timing-object";
+// import { TimingProvider } from "timing-provider";
+// import { setTimingsrc } from "timingsrc";
 
 import sourceVideo from "../videos/src-vid.mp4";
-import vid from "../videos/1.mp4";
+// import vid from "../videos/1.mp4";
 const Video = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoMetaData, setVideoMetaData] = useState({
@@ -20,7 +20,7 @@ const Video = () => {
   });
   const video1 = useRef(null);
   const video2 = useRef(null);
-  const playbtn = useRef(null);
+
   const playPauseHandler = () => {
     if (isPlaying) {
       video1.current.pause();
@@ -31,7 +31,7 @@ const Video = () => {
     }
     setIsPlaying(!isPlaying);
   };
-  const pauseHandler = () => {};
+
   const timeHandler = (e) => {
     setVideoMetaData({
       ...videoMetaData,

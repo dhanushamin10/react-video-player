@@ -1,0 +1,49 @@
+.video-player {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(106, 106, 106);
+  background: linear-gradient(
+    90deg,
+    rgba(106, 106, 106, 1) 0%,
+    rgba(99, 98, 98, 0.9587185215883228) 2%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+.controls {
+  width: 60%;
+
+  min-height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(240, 240, 240);
+
+  svg {
+    cursor: pointer;
+  }
+  p {
+    padding: 0 0.5rem 0 0.5rem;
+  }
+}
+.progress-bar {
+  width: 60%;
+  input {
+    width: 100%;
+  }
+}
+video {
+  width: 40%;
+}
+.vid {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+.video {
+  display: flex;
+  flex-wrap: wrap;
+}

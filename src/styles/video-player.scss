@@ -12,9 +12,24 @@
     rgba(0, 0, 0, 1) 100%
   );
 }
-.controls {
-  width: 60%;
 
+.controls {
+  .volume-slider {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    justify-content: space-evenly;
+    input {
+      margin-left: 1rem;
+    }
+  }
+
+  p {
+    margin: 0 0 0 0.5rem;
+  }
+  width: 60%;
+  border-radius: 1rem;
   min-height: 7vh;
   display: flex;
   align-items: center;
@@ -25,7 +40,7 @@
     cursor: pointer;
   }
   p {
-    padding: 0 0.5rem 0 0.5rem;
+    margin-left: 1rem;
   }
 }
 .progress-bar {
@@ -46,4 +61,17 @@ video {
 .video {
   display: flex;
   flex-wrap: wrap;
+}
+.control-btns {
+  width: 40%;
+  margin-right: 14rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    margin: 0 1rem 0 1rem;
+  }
+  input {
+    width: 5rem;
+  }
 }

@@ -8,13 +8,8 @@ import {
   faForward,
   faBackward,
 } from "@fortawesome/free-solid-svg-icons";
-// import { TimingObject } from "timing-object";
-// import { TimingProvider } from "timing-provider";
-// import { setTimingsrc } from "timingsrc";
 
-import sourceVideo from "../videos/src-vid.mp4";
-// import vid from "../videos/1.mp4";
-const Video = () => {
+const Video = (props) => {
   const video1 = useRef(null);
   const video2 = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -112,14 +107,14 @@ const Video = () => {
             onLoadedData={dataHandler}
             onTimeUpdate={timeHandler}
             ref={video1}
-            src={sourceVideo}
+            src={props.video1}
           ></video>
           <video
             onEnded={endToggle}
             onLoadedData={dataHandler}
             onLoadedMetadata={timeHandler}
             ref={video2}
-            src={sourceVideo}
+            src={props.video2}
             muted
           ></video>
         </div>

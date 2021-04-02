@@ -1,14 +1,15 @@
-import { useRef } from 'react';
-import Webcam from 'react-webcam';
-import useWebcamRecorder from '../hooks/useWebcamRecorder';
-import sourceVideo from '../videos/src-vid.mp4';
+import { useRef } from "react";
+import Webcam from "react-webcam";
+import useWebcamRecorder from "../hooks/useWebcamRecorder";
+import sourceVideo from "../videos/src-vid.mp4";
 
-export default function Recorder() {
+export default function Recorder(props) {
   const [
     webcamRef,
     startRecording,
     stopRecording,
     downloadRecording,
+    getRecordedUrl
   ] = useWebcamRecorder();
 
   function handleStart() {
@@ -20,6 +21,12 @@ export default function Recorder() {
     stopRecording();
     sourceVideoRef.current.pause();
     webcamRef.current.video.pause();
+  }
+
+  function handleCompare() {
+    const recordedUrl = getRecordedUrl();
+    props.changeVideo2(recordedUrl);
+    props.changeState("preview");
   }
 
   const sourceVideoRef = useRef(null);
@@ -35,6 +42,7 @@ export default function Recorder() {
         <div className="controls">
           <button onClick={handleStop}>Stop Recording</button>
           <button onClick={downloadRecording}>Download Recording</button>
+          <button onClick={handleCompare}>Compare recording</button>
         </div>
       </div>
     </>

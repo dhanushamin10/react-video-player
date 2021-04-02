@@ -19,6 +19,7 @@ export default function Recorder() {
   function handleStop() {
     stopRecording();
     sourceVideoRef.current.pause();
+    webcamRef.current.video.pause();
   }
 
   const sourceVideoRef = useRef(null);

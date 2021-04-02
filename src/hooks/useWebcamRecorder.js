@@ -5,7 +5,7 @@ export default function useWebcamRecorder() {
   const mediaRecorderRef = React.useRef(null);
   const [capturing, setCapturing] = React.useState(false);
   const [recordedChunks, setRecordedChunks] = React.useState([]);
-  const [recordedUrl, setRecordedUrl] = React.useState('');
+  const [recordedUrl, setRecordedUrl] = React.useState("");
 
   const handleStartCaptureClick = React.useCallback(() => {
     setCapturing(true);
@@ -29,24 +29,33 @@ export default function useWebcamRecorder() {
   const handleStopCaptureClick = React.useCallback(() => {
     mediaRecorderRef.current.stop();
     setCapturing(false);
-  }, [mediaRecorderRef, webcamRef, setCapturing]);
-
-  const handleDownload = React.useCallback(() => {
     if (recordedChunks.length) {
       const blob = new Blob(recordedChunks, {
         type: "video/mp4",
       });
-      const url = URL.createObjectURL(blob);
+      setRecordedUrl(URL.createObjectURL(blob));
+      setRecordedChunks([]);
+    }
+  }, [mediaRecorderRef, webcamRef, setCapturing, setRecordedUrl]);
+
+  const handleDownload = React.useCallback(() => {
+    if (recordedUrl.length !== 0) {
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
-      a.href = url;
+      a.href = recordedUrl;
       a.download = "my-recording.mp4";
       a.click();
-      window.URL.revokeObjectURL(url);
-      setRecordedChunks([]);
     }
-  }, [recordedChunks]);
+  }, [recordedChunks, recordedUrl]);
 
-  return [webcamRef, handleStartCaptureClick, handleStopCaptureClick, handleDownload];
+  const getRecordedUrl = React.useCallback(() => recordedUrl, [recordedUrl]);
+
+  return [
+    webcamRef,
+    handleStartCaptureClick,
+    handleStopCaptureClick,
+    handleDownload,
+    getRecordedUrl,
+  ];
 }

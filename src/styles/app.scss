@@ -4,5 +4,15 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
-
+body {
+  background: rgb(106, 106, 106);
+  background: linear-gradient(
+    90deg,
+    rgba(106, 106, 106, 1) 0%,
+    rgba(99, 98, 98, 0.9587185215883228) 2%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background-repeat: no-repeat;
+}
 @import "./video-player";
+@import "./navbar.scss";

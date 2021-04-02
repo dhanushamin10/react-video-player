@@ -1,62 +1,88 @@
 .video-player {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgb(106, 106, 106);
-  background: linear-gradient(
-    90deg,
-    rgba(106, 106, 106, 1) 0%,
-    rgba(99, 98, 98, 0.9587185215883228) 2%,
-    rgba(0, 0, 0, 1) 100%
-  );
 }
 
 .controls {
+  color: #0a634e;
+  background: #ecfffa;
+  border-radius: 2rem;
+
   .volume-slider {
     height: 2rem;
     display: flex;
     align-items: center;
     margin-left: 1rem;
     justify-content: space-evenly;
-    input {
+    p {
       margin-left: 1rem;
+      text-align: center;
+      width: 4rem;
     }
   }
 
-  p {
+  p.time-text {
     margin: 0 0 0 0.5rem;
+    width: 8rem;
+    text-align: center;
   }
-  width: 60%;
-  border-radius: 1rem;
+
   min-height: 7vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(240, 240, 240);
 
   svg {
     cursor: pointer;
   }
-  p {
-    margin-left: 1rem;
-  }
 }
 .progress-bar {
-  width: 60%;
+  margin-bottom: 0.5rem;
+  height: 0.5rem;
+  background: #15cca0;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+
   input {
     width: 100%;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type="range"]:focus {
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+  }
+  .animate-progressbar {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    pointer-events: none;
   }
 }
 video {
   width: 40%;
+  height: auto;
+  flex: 1 1 20rem;
+  margin: 0 1rem 1rem 1rem;
 }
 .vid {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem;
+  flex-wrap: wrap;
 }
 .video {
   display: flex;
@@ -73,5 +99,50 @@ video {
   }
   input {
     width: 5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 9rem;
+  }
+  .control-btns {
+    margin: 0 auto 0 auto;
+  }
+  .progress-bar {
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+  .video-controls {
+    width: 100%;
+  }
+  p {
+    text-align: center;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .video-controls {
+    width: 100%;
+  }
+  .controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+  .control-btns {
+    margin: 0 auto 0 auto;
+  }
+  p {
+    text-align: center;
+    margin-top: 0.5rem;
   }
 }

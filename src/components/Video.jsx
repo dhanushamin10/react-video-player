@@ -2,12 +2,11 @@ import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
-  faAngleLeft,
-  faAngleRight,
   faPause,
   faRedo,
-  faPhoneVolume,
   faVolumeUp,
+  faForward,
+  faBackward,
 } from "@fortawesome/free-solid-svg-icons";
 // import { TimingObject } from "timing-object";
 // import { TimingProvider } from "timing-provider";
@@ -16,15 +15,15 @@ import {
 import sourceVideo from "../videos/src-vid.mp4";
 // import vid from "../videos/1.mp4";
 const Video = () => {
+  const video1 = useRef(null);
+  const video2 = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoMetaData, setVideoMetaData] = useState({
     currentTime: 0,
     totalTime: 0,
     volume: 1,
+    progressPercentage: 0,
   });
-  const video1 = useRef(null);
-  const video2 = useRef(null);
-
   const playPauseHandler = () => {
     if (isPlaying) {
       video1.current.pause();
@@ -37,10 +36,17 @@ const Video = () => {
   };
 
   const timeHandler = (e) => {
+    const currentTimeRounded = Math.round(e.target.currentTime);
+    const durationRounded = Math.round(e.target.duration);
+    const progressPercentage = Math.round(
+      (currentTimeRounded / durationRounded) * 100
+    );
+
     setVideoMetaData({
       ...videoMetaData,
       currentTime: e.target.currentTime,
       totalTime: e.target.duration,
+      progressPercentage,
     });
   };
   const getTime = (time) => {
@@ -94,6 +100,9 @@ const Video = () => {
     video1.current.currentTime = 0;
     video2.current.currentTime = 0;
   };
+  const trackAnimation = {
+    transform: `translateX(${videoMetaData.progressPercentage}%)`,
+  };
   return (
     <>
       <div className="video">
@@ -115,62 +124,75 @@ const Video = () => {
           ></video>
         </div>
       </div>
-      <div className="progress-bar">
-        <input
-          style={{ padding: 0 }}
-          min={0}
-          max={Math.floor(videoMetaData.totalTime)}
-          value={videoMetaData.currentTime}
-          type="range"
-          name=""
-          id=""
-          onChange={progressHandler}
-        />
-      </div>
-      <div className="controls">
-        <p>
-          {getTime(videoMetaData.currentTime) +
-            " / " +
-            getTime(videoMetaData.totalTime)}
-        </p>
-        <div className="volume-slider">
-          <FontAwesomeIcon icon={faVolumeUp} size="1x" />
+      <div className="video-controls">
+        <div className="progress-bar">
           <input
-            type="range"
+            style={{ padding: 0 }}
             min={0}
-            max={1}
-            step="0.1"
-            onChange={handleVolumeChange}
-            value={videoMetaData.volume}
+            max={Math.floor(videoMetaData.totalTime)}
+            value={videoMetaData.currentTime}
+            type="range"
             name=""
             id=""
+            onChange={progressHandler}
           />
-          <p>{videoMetaData.volume * 100 + "%"}</p>
+          <div style={trackAnimation} className="animate-progressbar"></div>
         </div>
-        <div className="control-btns">
-          <FontAwesomeIcon icon={faRedo} size="2x" onClick={resetHandler} />
-          <FontAwesomeIcon
-            onClick={() => {
-              skipHandler("backward");
-            }}
-            className="skip-back"
-            icon={faAngleLeft}
-            size="2x"
-          />
-          <FontAwesomeIcon
-            onClick={playPauseHandler}
-            className="play"
-            icon={!isPlaying ? faPlay : faPause}
-            size="2x"
-          />
-          <FontAwesomeIcon
-            onClick={() => {
-              skipHandler("forward");
-            }}
-            className="skip-forward"
-            icon={faAngleRight}
-            size="2x"
-          />
+        <div className="controls">
+          <p className="time-text">
+            {getTime(videoMetaData.currentTime) +
+              " / " +
+              getTime(videoMetaData.totalTime)}
+          </p>
+          <div className="volume-slider">
+            <FontAwesomeIcon icon={faVolumeUp} size="1x" color="#15CCA0" />
+
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step="0.1"
+              onChange={handleVolumeChange}
+              value={videoMetaData.volume}
+              name=""
+              id=""
+            />
+
+            <p>{videoMetaData.volume * 100 + "%"}</p>
+          </div>
+          <div className="control-btns">
+            <FontAwesomeIcon
+              icon={faRedo}
+              size="2x"
+              onClick={resetHandler}
+              color="#15CCA0"
+            />
+            <FontAwesomeIcon
+              onClick={() => {
+                skipHandler("backward");
+              }}
+              className="skip-back"
+              icon={faBackward}
+              size="2x"
+              color="#15CCA0"
+            />
+            <FontAwesomeIcon
+              onClick={playPauseHandler}
+              className="play"
+              icon={!isPlaying ? faPlay : faPause}
+              size="2x"
+              color="#15CCA0"
+            />
+            <FontAwesomeIcon
+              onClick={() => {
+                skipHandler("forward");
+              }}
+              className="skip-forward"
+              icon={faForward}
+              size="2x"
+              color="#15CCA0"
+            />
+          </div>
         </div>
       </div>
     </>

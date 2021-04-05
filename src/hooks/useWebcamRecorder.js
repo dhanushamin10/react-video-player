@@ -3,32 +3,34 @@ import React from "react";
 export default function useWebcamRecorder() {
   const webcamRef = React.useRef(null);
   const mediaRecorderRef = React.useRef(null);
-  const [capturing, setCapturing] = React.useState(false);
   const [recordedChunks, setRecordedChunks] = React.useState([]);
 
-  const handleStartCaptureClick = React.useCallback(() => {
-    setCapturing(true);
+  const handleDataAvailable = React.useCallback(
+    ({ data }) => {
+      if (data.size > 0) setRecordedChunks((prev) => prev.concat(data));
+    },
+    [setRecordedChunks]
+  );
+
+  const handleStartCapture = React.useCallback(() => {
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream);
     mediaRecorderRef.current.addEventListener(
       "dataavailable",
       handleDataAvailable
     );
     mediaRecorderRef.current.start();
-  }, [webcamRef, setCapturing, mediaRecorderRef]);
+  }, [handleDataAvailable, webcamRef, mediaRecorderRef]);
 
-  const handleDataAvailable = React.useCallback(
-    ({ data }) => {
-      if (data.size > 0) {
-        setRecordedChunks((prev) => prev.concat(data));
-      }
-    },
-    [setRecordedChunks]
-  );
+  const handlePauseToggle = React.useCallback(() => {
+    if (mediaRecorderRef.current.state === "recording")
+      mediaRecorderRef.current.pause();
+    else if (mediaRecorderRef.current.state === "paused")
+      mediaRecorderRef.current.resume();
+  }, [mediaRecorderRef]);
 
-  const handleStopCaptureClick = React.useCallback(() => {
+  const handleStopCapture = React.useCallback(() => {
     mediaRecorderRef.current.stop();
-    setCapturing(false);
-  }, [mediaRecorderRef, webcamRef, setCapturing]);
+  }, [mediaRecorderRef]);
 
   const handleDownload = React.useCallback(() => {
     if (recordedChunks.length) {
@@ -45,7 +47,7 @@ export default function useWebcamRecorder() {
       window.URL.revokeObjectURL(url);
     }
   }, [recordedChunks]);
-  
+
   const getRecordedUrl = React.useCallback(() => {
     const blob = new Blob(recordedChunks, {
       type: "video/mp4",
@@ -55,5 +57,12 @@ export default function useWebcamRecorder() {
     return url;
   }, [recordedChunks]);
 
-  return [webcamRef, handleStartCaptureClick, handleStopCaptureClick, handleDownload, getRecordedUrl];
+  return [
+    webcamRef,
+    handleStartCapture,
+    handlePauseToggle,
+    handleStopCapture,
+    handleDownload,
+    getRecordedUrl,
+  ];
 }

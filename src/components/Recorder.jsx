@@ -19,11 +19,10 @@ export default function Recorder(props) {
     setIsRecording(true);
     startRecording();
     sourceVideoRef.current.play();
-    const recordingTime = Math.floor(sourceVideoRef.current.duration); //testing purpose -> 5.0
-    while (Math.floor(sourceVideoRef.current.currentTime) !== recordingTime) {
-      await new Promise((r) => setTimeout(r, 10)); // sleep .1 second
-    }
-    handleStop();
+    // const recordingTime = Math.floor(sourceVideoRef.current.duration); //testing purpose -> 5.0
+    // while (Math.floor(sourceVideoRef.current.currentTime) !== recordingTime) {
+    //   await new Promise((r) => setTimeout(r, 10)); // sleep .1 second
+    // }
   };
 
   function handlePause() {
@@ -56,7 +55,11 @@ export default function Recorder(props) {
     <>
       <div className="video">
         <div className="vid">
-          <video ref={sourceVideoRef} src={sourceVideo}></video>
+          <video
+            ref={sourceVideoRef}
+            src={sourceVideo}
+            onEnded={handleStop}
+          ></video>
           <Webcam ref={webcamRef} onUserMedia={handleStart} />
         </div>
       </div>

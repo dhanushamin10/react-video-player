@@ -15,19 +15,23 @@ export default function Recorder(props) {
     getRecordedUrl,
   ] = useWebcamRecorder();
 
-  function handleStart() {
+  const handleStart = async () => {
     setIsRecording(true);
     startRecording();
     sourceVideoRef.current.play();
-  }
+    const recordingTime = Math.floor(sourceVideoRef.current.duration); //testing purpose -> 5.0
+    while (Math.floor(sourceVideoRef.current.currentTime) !== recordingTime) {
+      await new Promise((r) => setTimeout(r, 10)); // sleep .1 second
+    }
+    handleStop();
+  };
 
   function handlePause() {
     togglePause();
     if (isRecording) {
       sourceVideoRef.current.pause();
       webcamRef.current.video.pause();
-    }
-    else {
+    } else {
       sourceVideoRef.current.play();
       webcamRef.current.video.play();
     }
@@ -59,7 +63,9 @@ export default function Recorder(props) {
       <div className="video-controls">
         <div className="controls">
           <button onClick={handleStop}>Stop Recording</button>
-          <button onClick={handlePause}>{ isRecording ? 'Pause' : 'Resume' } Recording</button>
+          <button onClick={handlePause}>
+            {isRecording ? "Pause" : "Resume"} Recording
+          </button>
           <button onClick={downloadRecording}>Download Recording</button>
           <button onClick={handleCompare}>Compare recording</button>
         </div>

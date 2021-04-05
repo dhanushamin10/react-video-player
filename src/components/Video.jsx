@@ -105,6 +105,7 @@ const Video = (props) => {
           <video
             onVolumeChange={volumeHandler}
             onLoadedData={dataHandler}
+            onLoadedMetadata={timeHandler}
             onTimeUpdate={timeHandler}
             ref={video1}
             src={props.video1}

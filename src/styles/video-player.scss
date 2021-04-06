@@ -1,5 +1,5 @@
 .video-player {
-  height: 90vh;
+  height: 78vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@ $video-progress-height: 0rem;
   position: relative;
 
   width: $video-width + $vid-padding * 2;
-  height: ($video-height * 2) + $video-progress-height + $vid-padding * 2 ;
+  height: ($video-height * 2) + $video-progress-height + $vid-padding * 2;
 
   background-color: rgba($color: #fff, $alpha: 0.308);
   border-radius: $video-br;

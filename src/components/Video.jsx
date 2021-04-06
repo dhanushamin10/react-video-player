@@ -109,7 +109,7 @@ const Video = (props) => {
               onLoadedMetadata={timeHandler}
               onTimeUpdate={timeHandler}
               ref={video1}
-              src="https://temp.media/video/?height=180&width=320&length=10&text="
+              src={props.video1}
             ></video>
           </div>
           <div className="video2">
@@ -118,7 +118,7 @@ const Video = (props) => {
               onLoadedData={dataHandler}
               onLoadedMetadata={timeHandler}
               ref={video2}
-              src="https://temp.media/video/?height=180&width=320&length=10&text="
+              src={props.video2}
               muted
             ></video>
           </div>

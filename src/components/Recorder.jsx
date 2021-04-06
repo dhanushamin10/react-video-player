@@ -55,12 +55,16 @@ export default function Recorder(props) {
     <>
       <div className="video">
         <div className="vid">
-          <video
-            ref={sourceVideoRef}
-            src={sourceVideo}
-            onEnded={handleStop}
-          ></video>
-          <Webcam ref={webcamRef} onUserMedia={handleStart} />
+          <div className="video1">
+            <video
+              ref={sourceVideoRef}
+              src={sourceVideo}
+              onEnded={handleStop}
+            ></video>
+          </div>
+          <div className="video2">
+            <Webcam ref={webcamRef} onUserMedia={handleStart} />
+          </div>
         </div>
       </div>
       <div className="video-controls">

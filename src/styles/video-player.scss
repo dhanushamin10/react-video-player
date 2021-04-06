@@ -10,7 +10,7 @@
   color: #0a634e;
   background: #ecfffa;
   border-radius: 2rem;
-
+  margin-top: 1rem;
   .volume-slider {
     height: 2rem;
     display: flex;
@@ -81,6 +81,7 @@
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.308);
   border-radius: 1rem;
+  margin-bottom: 1rem;
 }
 .video1 {
   border-radius: 1rem 1rem 0 0rem;
@@ -93,6 +94,10 @@
 .video {
   display: flex;
   flex-wrap: wrap;
+}
+video {
+  width: 100%;
+  height: auto;
 }
 .control-btns {
   width: 40%;

@@ -102,25 +102,29 @@ const Video = (props) => {
     <>
       <div className="video">
         <div className="vid">
-          <video
-            onVolumeChange={volumeHandler}
-            onLoadedData={dataHandler}
-            onLoadedMetadata={timeHandler}
-            onTimeUpdate={timeHandler}
-            ref={video1}
-            src={props.video1}
-          ></video>
-          <video
-            onEnded={endToggle}
-            onLoadedData={dataHandler}
-            onLoadedMetadata={timeHandler}
-            ref={video2}
-            src={props.video2}
-            muted
-          ></video>
+          <div className="video1">
+            <video
+              onVolumeChange={volumeHandler}
+              onLoadedData={dataHandler}
+              onLoadedMetadata={timeHandler}
+              onTimeUpdate={timeHandler}
+              ref={video1}
+              src="https://temp.media/video/?height=180&width=320&length=10&text="
+            ></video>
+          </div>
+          <div className="video2">
+            <video
+              onEnded={endToggle}
+              onLoadedData={dataHandler}
+              onLoadedMetadata={timeHandler}
+              ref={video2}
+              src="https://temp.media/video/?height=180&width=320&length=10&text="
+              muted
+            ></video>
+          </div>
         </div>
       </div>
-      <div className="video-controls">
+      {/* <div className="video-controls">
         <div className="progress-bar">
           <input
             style={{ padding: 0 }}
@@ -189,8 +193,8 @@ const Video = (props) => {
               color="#15CCA0"
             />
           </div>
-        </div>
-      </div>
+        </div>  
+      </div>*/}
     </>
   );
 };

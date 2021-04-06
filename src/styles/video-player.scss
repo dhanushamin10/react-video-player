@@ -71,18 +71,24 @@
     pointer-events: none;
   }
 }
-video {
-  width: 40%;
-  height: auto;
-  flex: 1 1 20rem;
-  margin: 0 1rem 1rem 1rem;
-}
+
 .vid {
   display: flex;
-  align-items: center;
   justify-content: space-evenly;
-  padding: 1rem;
   flex-wrap: wrap;
+  padding: 0.5rem;
+  width: 21rem;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.308);
+  border-radius: 1rem;
+}
+.video1 {
+  border-radius: 1rem 1rem 0 0rem;
+  overflow: hidden;
+}
+.video2 {
+  border-radius: 0 0rem 1rem 1rem;
+  overflow: hidden;
 }
 .video {
   display: flex;

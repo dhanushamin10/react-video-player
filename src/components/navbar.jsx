@@ -10,7 +10,7 @@ import {
 const Navbar = () => {
   return (
     <nav>
-      <FontAwesomeIcon icon={faLongArrowAltLeft} size="3x" />
+      <FontAwesomeIcon icon={faLongArrowAltLeft} size="2x" />
       <h1>Practice</h1>
       <FontAwesomeIcon icon={faInfoCircle} size="2x" />
     </nav>

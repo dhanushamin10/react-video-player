@@ -53,8 +53,8 @@ export default function Recorder(props) {
   const sourceVideoRef = useRef(null);
   return (
     <>
-      <div className="video">
-        <div className="vid">
+      <div className="vid-container">
+        <div className="vid-viewer">
           <div className="video1">
             <video
               ref={sourceVideoRef}

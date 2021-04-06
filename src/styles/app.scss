@@ -16,3 +16,20 @@ body {
 }
 @import "./video-player";
 @import "./navbar.scss";
+
+button {
+  margin: 5px;
+  padding: 12px;
+  border-radius: 4px;
+  color: #000;
+  background-color: #15cca0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  border-color: unset;
+  text-align: left;
+  border: none;
+  transition: all 300ms linear;
+}
+button:active {
+  background-color: #17463b;
+}

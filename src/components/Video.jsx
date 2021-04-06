@@ -109,7 +109,9 @@ const Video = (props) => {
           <div className="vid-controls-center" onClick={playPauseHandler}></div>
           <div
             className="vid-controls-front"
-            onDoubleClick={() => skipHandler("forward")}
+            onDoubleClick={() => {
+              skipHandler("forward");
+            }}
           ></div>
         </div>
         <div className="vid-viewer">

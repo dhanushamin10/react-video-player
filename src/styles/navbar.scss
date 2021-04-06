@@ -1,9 +1,18 @@
 nav {
-  width: 95%;
-  margin: auto;
-  height: 10vh;
-  img {
-    padding-top: 1rem;
-    width: 10%;
+  width: 100%;
+  background: #26bac0;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1 {
+    color: white;
+    font-family: sans-serif;
+    justify-self: center;
+  }
+  svg {
+    color: white;
+    justify-self: flex-start;
+    margin: 0 0.7rem;
   }
 }

@@ -10,7 +10,13 @@ const VideoPlayer = (props) => {
   const onPreview = (
     <>
       <Video video1={video1} video2={video2} />
-      <button onClick={() => setState("recording")}>Start Recording</button>
+      <button
+        onClick={() => {
+          setState("recording");
+        }}
+      >
+        Start Recording
+      </button>
     </>
   );
 

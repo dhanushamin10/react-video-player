@@ -8,6 +8,8 @@ import {
   faForward,
   faBackward,
 } from "@fortawesome/free-solid-svg-icons";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Instructions from "./Instructions";
 
 const Video = (props) => {
   const video1 = useRef(null);
@@ -100,6 +102,7 @@ const Video = (props) => {
   };
   return (
     <>
+      <Instructions buttonLabel="click" className="modal" />
       <div className="vid-container">
         <div className="vid-controls">
           <div
@@ -125,9 +128,9 @@ const Video = (props) => {
               src={props.video1}
             ></video>
           </div>
-          <div className="progress">
+          {/* <div className="progress">
             <div className="progress-filled"></div>
-          </div>
+          </div> */}
           <div className="video2">
             <video
               onEnded={endToggle}

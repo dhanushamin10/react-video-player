@@ -1,9 +1,33 @@
 .video-player {
-  height: 78vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+}
+.modal-style {
+  position: absolute;
+  top: 20%;
+}
+.modal-content {
+  background-color: rgba(63, 60, 60, 0.1);
+  color: white;
+  backdrop-filter: blur(20px);
+}
+.modal-footer {
+  display: flex;
   justify-content: center;
+}
+.modal-footer button {
+  background: #15cca0;
+  color: black;
+}
+h5 {
+  color: #15cca0;
+}
+h6,
+h4 {
+  color: white;
 }
 
 $vid-padding: 0.5rem;
@@ -23,6 +47,7 @@ $video-progress-height: 0rem;
 
   padding: $vid-padding;
   margin-bottom: 1rem;
+  margin-top: 3rem;
 }
 
 // position: absolute for viewer & controls so that they overlap

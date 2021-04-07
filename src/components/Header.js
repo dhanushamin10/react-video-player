@@ -2,12 +2,12 @@
 import * as React from "react";
 import Stepper from "react-stepper-horizontal";
 
-export default function Header() {
+export default function Header({ step, setProgressStep }) {
   return (
     <div>
       <Stepper
         steps={[{ title: "Record" }, { title: "Save" }, { title: "Compare" }]}
-        activeStep={0}
+        activeStep={step}
         activeColor="#15cca0"
         activeTitleColor="#15cca0"
         defaultTitleColor="#a8a8a8"

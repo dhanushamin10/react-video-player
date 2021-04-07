@@ -6,6 +6,7 @@ import "../styles/recorder.scss";
 
 export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
   // webcam custom hook
   const [
     webcamRef,
@@ -20,10 +21,6 @@ export default function Recorder(props) {
     setIsRecording(true);
     startRecording();
     sourceVideoRef.current.play();
-    // const recordingTime = Math.floor(sourceVideoRef.current.duration); //testing purpose -> 5.0
-    // while (Math.floor(sourceVideoRef.current.currentTime) !== recordingTime) {
-    //   await new Promise((r) => setTimeout(r, 10)); // sleep .1 second
-    // }
   };
 
   function handlePause() {
@@ -40,6 +37,7 @@ export default function Recorder(props) {
 
   function handleStop() {
     setIsRecording(false);
+    setIsComplete(true);
     stopRecording();
     sourceVideoRef.current.pause();
     webcamRef.current.video.pause();
@@ -69,12 +67,17 @@ export default function Recorder(props) {
         </div>
       </div>
       <div className="recorder-controls">
-          <button onClick={handleStop}>Stop Recording</button>
-          <button onClick={handlePause}>
-            {isRecording ? "Pause" : "Resume"} Recording
+        <button className="btn m-1" onClick={handleStop}>
+          Stop Recording
+        </button>
+        <button className="btn m-1" onClick={handlePause}>
+          {isRecording ? "Pause" : "Resume"} Recording
+        </button>
+        {isComplete && (
+          <button className="btn m-1" onClick={handleCompare}>
+            Compare recording
           </button>
-          <button onClick={downloadRecording}>Download Recording</button>
-          <button onClick={handleCompare}>Compare recording</button>
+        )}
       </div>
     </>
   );

@@ -5,8 +5,7 @@ import {
   faForward,
   faBackward,
 } from "@fortawesome/free-solid-svg-icons";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Instructions from "./Instructions";
+
 import { MediaElementSyncer } from "media-element-syncer";
 
 const Video = (props) => {
@@ -18,15 +17,15 @@ const Video = (props) => {
     currentTime: 0,
     totalTime: 0,
     volume: 1,
-    progressPercentage: 0,
   });
+
   const playPauseHandler = () => {
     if (isPlaying) {
       video1.current.pause();
-      // video2.current.pause();
+      video2.current.pause();
     } else {
       video1.current.play();
-      // video2.current.play();
+      video2.current.play();
     }
     setIsPlaying(!isPlaying);
   };
@@ -34,93 +33,50 @@ const Video = (props) => {
   const timeHandler = (e) => {
     const syncer = new MediaElementSyncer(video1.current);
     syncer.addChild(video2.current);
-    const currentTimeRounded = Math.round(e.target.currentTime);
-    const durationRounded = Math.round(e.target.duration);
-    const progressPercentage = Math.round(
-      (currentTimeRounded / durationRounded) * 100
-    );
 
     setVideoMetaData({
       ...videoMetaData,
       currentTime: e.target.currentTime,
       totalTime: e.target.duration,
-      progressPercentage,
     });
   };
-  const getTime = (time) => {
-    return (
-      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
-    );
-  };
-  const progressHandler = (e) => {
-    video1.current.currentTime = e.target.value;
-    // video2.current.currentTime = e.target.value;
-    setVideoMetaData({ ...videoMetaData, currentTime: e.target.value });
-  };
+
   const skipHandler = (direction) => {
-    if (direction === "forward") {
-      video1.current.currentTime = video1.current.currentTime + 1;
-      // video2.current.currentTime = video2.current.currentTime + 1;
-      setVideoMetaData({
-        ...videoMetaData,
-        currentTime: videoMetaData.currentTime + 1,
-      });
-    } else {
-      video1.current.currentTime = video1.current.currentTime - 1;
-      // video2.current.currentTime = video2.current.currentTime - 1;
-      setVideoMetaData({
-        ...videoMetaData,
-        currentTime: videoMetaData.currentTime + 1,
-      });
-    }
+    let timeDiff = direction === "forward" ? 1 : -1;
+
+    // when paused, make both videos go forward/backward
+    video1.current.currentTime = video1.current.currentTime + timeDiff;
+    video2.current.currentTime = video2.current.currentTime + timeDiff;
+
+    setVideoMetaData({
+      ...videoMetaData,
+      currentTime: videoMetaData.currentTime + timeDiff,
+    });
   };
-  const dataHandler = () => {
-    var d = new Date();
-    var n = d.getTime();
-    console.log(n);
-  };
+
   const endToggle = () => {
     setIsPlaying(false);
     video1.current.currentTime = 0;
-    // video2.current.currentTime = 0;
     video1.current.pause();
-    // video2.current.pause();
   };
+
   const volumeHandler = (e) => {
     setVideoMetaData({ ...videoMetaData, volume: e.target.volume });
   };
-  const handleVolumeChange = (e) => {
-    setVideoMetaData({ ...videoMetaData, volume: e.target.value });
-    video1.current.volume = e.target.value;
-  };
-  const resetHandler = () => {
-    setVideoMetaData({ ...videoMetaData, currentTime: 0 });
-    video1.current.currentTime = 0;
-    // video2.current.currentTime = 0;
-  };
-  const trackAnimation = {
-    transform: `translateX(${videoMetaData.progressPercentage}%)`,
-  };
+
   const loadedVideoHandler = (e) => {
-    console.log("Debug X2");
     const syncer = new MediaElementSyncer(video1.current);
     syncer.addChild(video2.current);
-    const currentTimeRounded = Math.round(e.target.currentTime);
-    const durationRounded = Math.round(e.target.duration);
-    const progressPercentage = Math.round(
-      (currentTimeRounded / durationRounded) * 100
-    );
 
     setVideoMetaData({
       ...videoMetaData,
       currentTime: e.target.currentTime,
       totalTime: e.target.duration,
-      progressPercentage,
     });
   };
+
   return (
     <>
-      <Instructions buttonLabel="click" className="modal" />
       <div className="vid-container">
         <div className="vid-controls">
           <VideoControlDblClick
@@ -156,7 +112,6 @@ const Video = (props) => {
           <div className="video1">
             <video
               onVolumeChange={volumeHandler}
-              onLoadedData={dataHandler}
               onLoadedMetadata={loadedVideoHandler}
               onTimeUpdate={timeHandler}
               ref={video1}
@@ -166,7 +121,6 @@ const Video = (props) => {
           <div className="video2">
             <video
               onEnded={endToggle}
-              onLoadedData={dataHandler}
               onLoadedMetadata={loadedVideoHandler}
               ref={video2}
               src={props.video2}

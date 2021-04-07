@@ -1,0 +1,27 @@
+button {
+  margin: 5px;
+  padding: 12px;
+  border-radius: 4px;
+  color: #000;
+  background-color: #15cca0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border-color: unset;
+  text-align: left;
+  border: none;
+  transition: all 300ms linear;
+}
+button:active {
+  background-color: #17463b;
+}
+button:focus {
+  outline: none;
+}
+
+.recorder-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

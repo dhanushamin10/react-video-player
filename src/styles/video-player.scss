@@ -10,13 +10,12 @@ $vid-padding: 0.5rem;
 $video-width: 20rem;
 $video-height: $video-width * 9 / 16;
 $video-br: 1rem;
-$video-progress-height: 0rem;
 
 .vid-container {
   position: relative;
 
   width: $video-width + $vid-padding * 2;
-  height: ($video-height * 2) + $video-progress-height + $vid-padding * 2;
+  height: ($video-height * 2) + $vid-padding * 2;
 
   background-color: rgba($color: #fff, $alpha: 0.308);
   border-radius: $video-br;
@@ -28,18 +27,6 @@ $video-progress-height: 0rem;
 .vid-viewer {
   position: absolute;
   z-index: 1;
-
-  // .progress {
-  //   width: 100%;
-  //   height: $video-progress-height;
-  //   background-color: #ecfffa;
-  //   .progress-filled {
-  //     width: 25%;
-  //     height: 100%;
-  //     background-color: #15cca0;
-  //   }
-  // }
-
   .video1 {
     border-radius: $video-br $video-br 0 0;
     overflow: hidden;
@@ -64,18 +51,54 @@ $video-progress-height: 0rem;
     }
   }
 }
-.vid-controls {
+
+.vid-paused-overlay {
   position: absolute;
   z-index: 2;
 
   width: $video-width;
-  height: $video-height * 2 + $video-progress-height;
+  height: $video-height * 2;
+  border-radius: $video-br;
+  background-color: rgba($color: #000, $alpha: 0.308);
+}
+.vid-controls {
+  position: absolute;
+  z-index: 3;
+
+  width: $video-width;
+  height: $video-height * 2;
 
   display: flex;
   * {
-    flex-grow: 1;
+    width: 33%;
+    //center icons
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .icon-container {
+      display: flex;
+      flex-direction: column;
+
+      //center left & right icon
+      svg {
+        margin-top: 40px;
+      }
+    }
+    svg {
+      color: rgba($color: #fff, $alpha: 0.8);
+    }
+    .control-info {
+      user-select: none;
+      color: rgba($color: #fff, $alpha: 0.8);
+      text-transform: uppercase;
+      text-align: center;
+
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 100;
+
+      padding-top: 1rem;
+    }
   }
 }

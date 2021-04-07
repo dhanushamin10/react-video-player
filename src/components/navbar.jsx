@@ -1,9 +1,6 @@
 import React from "react";
-import logo from "../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBackward,
-  faInfo,
   faInfoCircle,
   faLongArrowAltLeft,
 } from "@fortawesome/free-solid-svg-icons";

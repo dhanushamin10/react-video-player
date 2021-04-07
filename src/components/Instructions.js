@@ -11,21 +11,19 @@ export const Instructions = (props) => {
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle} className="modal-style" size="lg">
+        <ModalHeader>How it works?</ModalHeader>
         <ModalHeader>
-          <h4>How it works?</h4>
-        </ModalHeader>
-        <ModalHeader>
-          <h5> 1. Record</h5>{" "}
+          1. Record
           <h6>
             Click on Record and practice your dance with Instructor's video
           </h6>
         </ModalHeader>
 
         <ModalHeader>
-          <h5> 2. Save</h5> <h6>Save the practice video to the device</h6>
+          2. Save<h6>Save the practice video to the device</h6>
         </ModalHeader>
         <ModalHeader>
-          <h5> 3. Compare</h5>{" "}
+          3. Compare
           <h6>Compare the practice video with Instructor's video</h6>
         </ModalHeader>
 

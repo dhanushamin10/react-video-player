@@ -1,0 +1,9 @@
+.recorder-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  * {
+    flex-grow: 1;
+  }
+}

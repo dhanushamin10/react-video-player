@@ -3,146 +3,129 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+}
+.modal-style {
+  position: absolute;
+  top: 20%;
+  border-radius: 10rem !important;
+}
+.modal-content {
+  background-color: rgba(63, 60, 60, 0.1);
+  color: white;
+  backdrop-filter: blur(20px);
+}
+.modal-footer {
+  display: flex;
   justify-content: center;
 }
-
-.controls {
-  color: #0a634e;
-  background: #ecfffa;
-  border-radius: 2rem;
-
-  .volume-slider {
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    margin-left: 1rem;
-    justify-content: space-evenly;
-    p {
-      margin-left: 1rem;
-      text-align: center;
-      width: 4rem;
-    }
-  }
-
-  p.time-text {
-    margin: 0 0 0 0.5rem;
-    width: 8rem;
-    text-align: center;
-  }
-
-  min-height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  svg {
-    cursor: pointer;
-  }
-}
-.progress-bar {
-  margin-bottom: 0.5rem;
-  height: 0.5rem;
+.modal-footer button {
   background: #15cca0;
+  color: black;
+}
+h5 {
+  color: #15cca0;
+}
+h6,
+h4 {
+  color: white;
+}
+
+$vid-padding: 0.5rem;
+$video-width: 20rem;
+$video-height: $video-width * 9 / 16;
+$video-br: 1rem;
+
+.vid-container {
   position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
 
-  input {
-    width: 100%;
-    -webkit-appearance: none;
-    background: transparent;
-    cursor: pointer;
-  }
-  input[type="range"]:focus {
-    outline: none;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 16px;
-    width: 16px;
-  }
-  .animate-progressbar {
-    position: absolute;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    pointer-events: none;
-  }
-}
-video {
-  width: 40%;
-  height: auto;
-  flex: 1 1 20rem;
-  margin: 0 1rem 1rem 1rem;
-}
-.vid {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 1rem;
-  flex-wrap: wrap;
-}
-.video {
-  display: flex;
-  flex-wrap: wrap;
-}
-.control-btns {
-  width: 40%;
-  margin-right: 14rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  svg {
-    margin: 0 1rem 0 1rem;
-  }
-  input {
-    width: 5rem;
-  }
+  width: $video-width + $vid-padding * 2;
+  height: ($video-height * 2) + $vid-padding * 2;
+
+  background-color: rgba($color: #fff, $alpha: 0.308);
+  border-radius: $video-br;
+
+  padding: $vid-padding;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
 }
 
-@media (max-width: 500px) {
-  .controls {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
+// position: absolute for viewer & controls so that they overlap
+.vid-viewer {
+  position: absolute;
+  z-index: 1;
+  .video1 {
+    border-radius: $video-br $video-br 0 0;
+    overflow: hidden;
+  }
+  .video2 {
+    border-radius: 0 0 $video-br $video-br;
+    overflow: hidden;
+  }
+  .video1,
+  .video2 {
+    width: $video-width;
+    height: $video-width * 9 / 16;
+    background: #000;
+
+    //center
+    display: flex;
     justify-content: center;
-    height: 9rem;
-  }
-  .control-btns {
-    margin: 0 auto 0 auto;
-  }
-  .progress-bar {
-    width: 100%;
-    input {
-      width: 100%;
+    //fit video in container
+    video {
+      height: 100%;
+      width: auto;
     }
   }
-  .video-controls {
-    width: 100%;
-  }
-  p {
-    text-align: center;
-  }
 }
 
-@media (min-width: 501px) and (max-width: 768px) {
-  .video-controls {
-    width: 100%;
-  }
-  .controls {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
+.vid-paused-overlay {
+  position: absolute;
+  z-index: 2;
+
+  width: $video-width;
+  height: $video-height * 2;
+  border-radius: $video-br;
+  background-color: rgba($color: #000, $alpha: 0.308);
+}
+.vid-controls {
+  position: absolute;
+  z-index: 3;
+
+  width: $video-width;
+  height: $video-height * 2;
+
+  display: flex;
+  * {
+    width: 33%;
+    //center icons
+    display: flex;
     justify-content: center;
-    padding-bottom: 2rem;
-  }
-  .control-btns {
-    margin: 0 auto 0 auto;
-  }
-  p {
-    text-align: center;
-    margin-top: 0.5rem;
+    align-items: center;
+
+    .icon-container {
+      display: flex;
+      flex-direction: column;
+
+      //center left & right icon
+      svg {
+        margin-top: 40px;
+      }
+    }
+    svg {
+      color: rgba($color: #fff, $alpha: 0.8);
+    }
+    .control-info {
+      user-select: none;
+      color: rgba($color: #fff, $alpha: 0.8);
+      text-transform: uppercase;
+      text-align: center;
+
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 100;
+
+      padding-top: 1rem;
+    }
   }
 }

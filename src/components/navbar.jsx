@@ -1,9 +1,15 @@
 import React from "react";
-import logo from "../images/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInfoCircle,
+  faLongArrowAltLeft,
+} from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
   return (
     <nav>
-      <img src={logo} alt="" />
+      <FontAwesomeIcon icon={faLongArrowAltLeft} size="2x" />
+      <h1>Practice</h1>
+      <FontAwesomeIcon icon={faInfoCircle} size="2x" />
     </nav>
   );
 };

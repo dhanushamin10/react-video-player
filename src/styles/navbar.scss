@@ -1,9 +1,22 @@
 nav {
-  width: 95%;
-  margin: auto;
+  width: 100%;
+  background: #26bac0;
+  background-image: linear-gradient(to right, #8cfbff, #26bac0);
   height: 10vh;
-  img {
-    padding-top: 1rem;
-    width: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1 {
+    color: white;
+    font-family: sans-serif;
+    justify-self: center;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  svg {
+    color: white;
+    justify-self: flex-start;
+    margin: 0 1rem;
   }
 }

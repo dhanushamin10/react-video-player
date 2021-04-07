@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 body {
   background: rgb(106, 106, 106);
@@ -23,7 +24,7 @@ button {
   border-radius: 4px;
   color: #000;
   background-color: #15cca0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   border-color: unset;
   text-align: left;

@@ -1,6 +1,6 @@
 import Navbar from "./components/navbar";
 import VideoPlayer from "./components/VideoPlayer";
-import Header from "./components/Header";
+import Header from './components/Header'
 import "./styles/app.scss";
 import sourceVideo from "./videos/src-vid.mp4";
 import { useState } from "react";

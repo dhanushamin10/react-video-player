@@ -1,10 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
-  faPause,
-  faRedo,
-  faVolumeUp,
   faForward,
   faBackward,
 } from "@fortawesome/free-solid-svg-icons";
@@ -105,18 +102,35 @@ const Video = (props) => {
       <Instructions buttonLabel="click" className="modal" />
       <div className="vid-container">
         <div className="vid-controls">
-          <div
-            className="vid-controls-back"
-            onDoubleClick={() => skipHandler("backward")}
-          ></div>
-          <div className="vid-controls-center" onClick={playPauseHandler}></div>
-          <div
-            className="vid-controls-front"
-            onDoubleClick={() => {
+          <VideoControlDblClick
+            callback={() => {
+              skipHandler("backward");
+            }}
+            name="back"
+          >
+            <div className="icon-container">
+              <FontAwesomeIcon icon={faBackward} size="2x" />
+              <span className="control-info">-1 second</span>
+            </div>
+          </VideoControlDblClick>
+
+          <div className="vid-controls-center" onClick={playPauseHandler}>
+            {!isPlaying && <FontAwesomeIcon icon={faPlay} size="3x" />}
+          </div>
+
+          <VideoControlDblClick
+            callback={() => {
               skipHandler("forward");
             }}
-          ></div>
+            name="front"
+          >
+            <div className="icon-container">
+              <FontAwesomeIcon icon={faForward} size="2x" />
+              <span className="control-info">+1 second</span>
+            </div>
+          </VideoControlDblClick>
         </div>
+        {!isPlaying && <div className="vid-paused-overlay"></div>}
         <div className="vid-viewer">
           <div className="video1">
             <video
@@ -128,9 +142,6 @@ const Video = (props) => {
               src={props.video1}
             ></video>
           </div>
-          {/* <div className="progress">
-            <div className="progress-filled"></div>
-          </div> */}
           <div className="video2">
             <video
               onEnded={endToggle}
@@ -146,5 +157,30 @@ const Video = (props) => {
     </>
   );
 };
+
+function VideoControlDblClick(props) {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const doubleClickFunction = (event) => {
+    event.preventDefault();
+
+    setIsClicked(true);
+
+    props.callback();
+  };
+
+  useEffect(() => {
+    if (isClicked) setTimeout(() => setIsClicked(false), 300);
+  }, [isClicked]);
+
+  return (
+    <div
+      className={`vid-controls-${props.name}`}
+      onDoubleClick={doubleClickFunction}
+    >
+      {isClicked && props.children}
+    </div>
+  );
+}
 
 export default Video;

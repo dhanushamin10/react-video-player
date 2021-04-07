@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import useWebcamRecorder from "../hooks/useWebcamRecorder";
 import sourceVideo from "../videos/src-vid.mp4";
+import "../styles/recorder.scss";
 
 export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
@@ -67,15 +68,13 @@ export default function Recorder(props) {
           </div>
         </div>
       </div>
-      <div className="video-controls">
-        <div className="controls">
+      <div className="recorder-controls">
           <button onClick={handleStop}>Stop Recording</button>
           <button onClick={handlePause}>
             {isRecording ? "Pause" : "Resume"} Recording
           </button>
           <button onClick={downloadRecording}>Download Recording</button>
           <button onClick={handleCompare}>Compare recording</button>
-        </div>
       </div>
     </>
   );

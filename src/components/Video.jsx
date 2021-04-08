@@ -22,10 +22,8 @@ const Video = (props) => {
   const playPauseHandler = () => {
     if (isPlaying) {
       video1.current.pause();
-      video2.current.pause();
     } else {
       video1.current.play();
-      video2.current.play();
     }
     setIsPlaying(!isPlaying);
   };
@@ -46,7 +44,6 @@ const Video = (props) => {
 
     // when paused, make both videos go forward/backward
     video1.current.currentTime = video1.current.currentTime + timeDiff;
-    video2.current.currentTime = video2.current.currentTime + timeDiff;
 
     setVideoMetaData({
       ...videoMetaData,

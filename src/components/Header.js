@@ -3,7 +3,7 @@ import Stepper from "react-stepper-horizontal";
 
 export default function Header({ step, setProgressStep }) {
   return (
-    <div>
+    <div className="stepper-container">
       <Stepper
         steps={[{ title: "Record" }, { title: "Save" }, { title: "Compare" }]}
         activeStep={step}

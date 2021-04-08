@@ -4,6 +4,8 @@ import useWebcamRecorder from "../hooks/useWebcamRecorder";
 import sourceVideo from "../videos/src-vid.mp4";
 import "../styles/recorder.scss";
 
+import Instructions from "./Instructions";
+
 export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -47,11 +49,14 @@ export default function Recorder(props) {
     const recordedUrl = getRecordedUrl();
     props.changeVideo2(recordedUrl);
     props.changeState("preview");
+    
+    props.setDownloadFunction(downloadRecording);
   }
 
   const sourceVideoRef = useRef(null);
   return (
     <>
+      <Instructions buttonLabel="click" className="modal" />
       <div className="vid-container">
         <div className="vid-viewer">
           <div className="video1">

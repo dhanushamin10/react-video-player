@@ -13,6 +13,10 @@ export default function Header({ step, setProgressStep }) {
         completeColor="#15cca0"
         completeTitleColor="#15cca0"
         completeBarColor="#15cca0"
+        circleTop="10px"
+        circleTextSize="12px"
+        circleSize="10px"
+        defaultBarColor="#201f1f"
       />
     </div>
   );

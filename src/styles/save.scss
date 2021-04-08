@@ -1,0 +1,69 @@
+.save-container {
+  $video-width: 22rem;
+  $video-height: $video-width * 9 / 16;
+  .save-viewer {
+    .video1,
+    .video2 {
+      width: $video-width;
+      height: $video-height;
+      border-radius: 0.625rem;
+      margin-bottom: 0.625rem;
+      overflow: hidden;
+      position: relative;
+
+      video {
+        position: absolute;
+        height: 100%;
+        width: auto;
+      }
+
+      .video-name {
+        color: #fff;
+        position: absolute;
+        bottom: 0.625rem;
+        left: 1rem;
+      }
+    }
+  }
+
+  .toast {
+    box-shadow: none;
+    .toast-header,
+    .toast-body {
+      background-color: #000;
+    }
+
+    .toast-header {
+      color: #15cca0;
+      border-bottom: none;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .toast-body {
+      color: #fff;
+
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      text-align: center;
+
+      padding-top: 0;
+      .yesNo-buttons {
+        display: flex;
+        justify-content: center;
+        .btn {
+          width: 6.375rem;
+          margin-top: 1rem;
+          margin-left: 0.625rem;
+        }
+
+        .btn:last-child {
+          background-color: #000 !important;
+          color: #fff;
+          border: 2px solid #fff;
+        }
+      }
+    }
+  }
+}

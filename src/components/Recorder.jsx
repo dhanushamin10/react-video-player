@@ -13,6 +13,8 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 
+import Instructions from "./Instructions";
+
 export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -56,6 +58,8 @@ export default function Recorder(props) {
     const recordedUrl = getRecordedUrl();
     props.changeVideo2(recordedUrl);
     props.changeState("preview");
+    
+    props.setDownloadFunction(downloadRecording);
   }
 
   const sourceVideoRef = useRef(null);
